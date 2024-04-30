@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bool_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 09:52:16 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/29 12:55:41 by irabesan         ###   ########.fr       */
+/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
+/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	main(int ac, char **av)
+int	bool_error(char **av)
 {
-	ts_node	*a;
-	ts_node	*b;
+	int	i;
+	int	j;
 
-	a = NULL;
-	b = NULL;
-	if (ac == 1 || (ac == 2 && !av[1][0]))
-		return (1);
-	else if (ac == 2)
-		av = ft_split_utils(av[1], ' ');
-	
-		
+	i = 1;
+	j = 0;
+
+	while (av[i])
+	{
+		if (ft_isdigit(av[i][j]) || av[i][j] == ' ' || (av[i][j]) == '-' && ft_isdigit(av[i][j + 1]))
+			j++;
+		else
+			return (0);
+	}
 }
