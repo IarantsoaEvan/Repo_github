@@ -51,7 +51,21 @@ int	multipli_same(ts_node *a, int nbr)
 	return (0);
 }
 
-void	add_nd(ts_node **a, av + 1, error)
+void	free_error(ts_node **a, char **av, ..........)
+{
+	exit(2);
+}
+
+void	add_nd(ts_node **stack, int nbr)
+{
+	ts_node	*act_nd;
+	ts_node	*last_nd;
+
+	if (!stack)
+		return (0);
+	act_nd = malloc(sizeof(ts_node))
+}
+void	set_up_sa(ts_node **a, av + 1, error)
 {
 	long	nbr,
 	int	idx;
