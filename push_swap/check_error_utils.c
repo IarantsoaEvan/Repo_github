@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_in_a.c                                         :+:      :+:    :+:   */
+/*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:29:11 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:29:13 by irabesan         ###   ########.fr       */
+/*   Created: 2024/05/02 12:22:12 by irabesan          #+#    #+#             */
+/*   Updated: 2024/05/02 12:22:12 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // because arg always arrives as a string even without "" 
-static long	ft_atl(const char *str)
+long	ft_atl(const char *str)
 {
 	size_t	i;
 	int		sign;
@@ -38,7 +38,25 @@ static long	ft_atl(const char *str)
 	return (result * sign);
 }
 
-int	multipli_same(ts_node *a, int nbr)
+int	ft_isdigit(char **av)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while(av[i])
+	{
+		if((av[i][j] > '0' && av[i][j] < '9')
+		 || (av[i][j] == '-' && av[i][j + 1] > '0' && av[i][j] < '9'))
+			j++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int	dupli_same(ts_node *a, int nbr)
 {
 	if (!a)
 		return (0);
@@ -49,34 +67,4 @@ int	multipli_same(ts_node *a, int nbr)
 		a = a->next;
 	}
 	return (0);
-}
-
-void	free_error(ts_node **a, char **av, ..........)
-{
-	exit(2);
-}
-
-void	add_nd(ts_node **stack, int nbr)
-{
-	ts_node	*act_nd;
-	ts_node	*last_nd;
-
-	if (!stack)
-		return (0);
-	act_nd = malloc(sizeof(ts_node))
-}
-void	set_up_sa(ts_node **a, av + 1, error)
-{
-	long	nbr,
-	int	idx;
-
-	while (av[idx])
-	{
-		nbr = ft_atl(av[i]);
-		if (nbr < -2147483648 || nbr > 2147483647)
-			free_error(a, av, state_ac);
-		if (multipli_same(*a, (int)nbr))
-			free_error(a, av, state_error);
-		add_nd(*a, (int)nbr);
-	}
 }

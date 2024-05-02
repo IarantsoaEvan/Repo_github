@@ -6,7 +6,7 @@
 /*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 08:57:53 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/29 11:08:29 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:49:56 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,16 @@ typedef struct	sst_node
 	struct sst_node	*next;
 	struct sst_node	*prev;
 }ts_node;
+
+ts_node	*whos_last(ts_node *root);
+void	add_nd(ts_node *stack, int nbr);
+void	set_up(ts_node **a, char **av, int error);
+long	ft_atl(const char *str);
+int	ft_isdigit(char **av);
+int	dupli_same(ts_node *a, int nbr);
+char	**ft_split(char const *s, char c);
+int	bool_error(int error, int b, char **av);
+
+
 
 # endif

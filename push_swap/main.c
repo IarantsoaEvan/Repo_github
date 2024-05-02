@@ -16,6 +16,7 @@ int	main(int ac, char **av)
 {
 	ts_node	*a;
 	ts_node	*b;
+	int	error;
 
 	a = NULL;
 	b = NULL;
@@ -23,6 +24,8 @@ int	main(int ac, char **av)
 		return (1);
 	else if (ac == 2)
 		av = ft_split_utils(av[1], ' ');
+	error = set_up(a, av + 1, error);
+	
 	
 		
 }

@@ -1,28 +1,22 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   action_push.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/05/02 17:07:32 by irabesan          #+#    #+#             */
+/*   Updated: 2024/05/02 17:07:34 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	bool_error(char **av)
+#include "push_swap.h"
+
+static void	push(ts_node **dest, ts_node **src)
 {
-	int	i;
-	int	j;
+	ts_node	nd;
 
-	i = 1;
-	j = 0;
-
-	while (av[i])
-	{
-		if (ft_isdigit(av[i][j]) || av[i][j] == ' ' || (av[i][j]) == '-' && ft_isdigit(av[i][j + 1]))
-			j++;
-		else
-			return (0);
-	}
+	if (*src == NULL)
+		return ;
+	nd =
 }

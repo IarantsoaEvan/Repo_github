@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   bool_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 11:07:53 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/29 12:55:39 by irabesan         ###   ########.fr       */
+/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
+/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
-
-
-
-static void 	add_nd()
+int	bool_error(int error, int b, char **av)
+{
+	if (error)
+		write(1, "error\n", 6);
+	if (b)
+		free_arg(av);
+	return (0);	
+}
