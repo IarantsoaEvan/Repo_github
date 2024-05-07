@@ -38,12 +38,12 @@ static size_t	ft_count_w(char const *s, char c)
 	size_t	tokens;
 	size_t	x;
 	size_t	y;
-	int		conditions;
+	int		condition;
 
 	x = 0;
 	y = 0;
 	tokens = 0;
-	condition 0;
+	condition = 0;
 	while (s[x] == c)
 		x++;
 	y = x;
@@ -51,7 +51,7 @@ static size_t	ft_count_w(char const *s, char c)
 	{
 		if (s[y] != c && condition == 0)
 		{
-			condition == 1;
+			condition = 1;
 			tokens++;
 		}
 		else if (s[y] == c)
@@ -63,13 +63,12 @@ static size_t	ft_count_w(char const *s, char c)
 
 static char	*paste_w(char const *str, size_t len)
 {
-	char	str1;
-	int		i;
+	char	*str1;
 
 	str1 = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str1)
 	{
-		free(str1)
+		free(str1);
 		return (NULL);
 	}
 	ft_strlcpy(str1, str, len + 1);

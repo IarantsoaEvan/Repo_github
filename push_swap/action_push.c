@@ -14,9 +14,10 @@
 
 static void	push(ts_node **dest, ts_node **src)
 {
-	ts_node	nd;
+	ts_node	*nd;
 
 	if (*src == NULL)
 		return ;
-	nd =
+	nd = *src;
+	*src = (*src)->next;
 }

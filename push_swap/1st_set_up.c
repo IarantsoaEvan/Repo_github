@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 ts_node	*whos_last(ts_node *root)
 {
@@ -45,21 +46,23 @@ void	add_nd(ts_node *stack, int nbr)
 		node->prev = last_nd;
 	}
 }
-void	set_up(ts_node **a, char **av, int error)
+int	set_up(ts_node **a, char **av)
 {
 	long	nbr;
 	int	idx;
 
+	idx = 0;
 	while (av[idx])
 	{
-		nbr = ft_atl(av[idx]);
 		if (ft_isdigit(av))
-			bool_error(error, ac == 2, av);
+			return (1);
+		nbr = ft_atl(av[idx]);
 		if (nbr < -2147483648 || nbr > 2147483647)
-			bool_error(error, ac == 2, av);
+			return (1);
 		if (dupli_same(*a, (int)nbr))
-			bool_error(error, ac == 2, av);
+			return (1);
 		add_nd(*a, (int)nbr);
 		idx++;
 	}
+	return (0);
 }

@@ -1,4 +1,5 @@
-NAME = push_swap.a
+NAME = push_swap
+MAIN = main.c
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 CFILES = 1st_set_up.c \
@@ -10,10 +11,12 @@ OFILES = $(CFILES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OFILES) push_swap.h
-	ar rc $(NAME) $(OFILES)
 %.o: %.c
-		$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(OFILES) push_swap.h
+	$(CC) $(CFLAGS) $(OFILES) $(MAIN) -o $(NAME) 
+
 clean:
 	rm -f $(OFILES)
 fclean: clean

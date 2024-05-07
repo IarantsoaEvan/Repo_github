@@ -59,7 +59,7 @@ int	ft_isdigit(char **av)
 int	dupli_same(ts_node *a, int nbr)
 {
 	if (!a)
-		return (0);
+		return (1);
 	while (a)
 	{
 		if (a->data == nbr)
