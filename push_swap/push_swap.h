@@ -15,6 +15,8 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include "ft_printf/ft_printf.h"
+#include "libft/libft.h"
 
 typedef struct	sst_node
 {
@@ -31,11 +33,9 @@ ts_node	*whos_last(ts_node *root);
 void	add_nd(ts_node *stack, int nbr);
 int	set_up(ts_node **a, char **av);
 long	ft_atl(const char *str);
-int	ft_isdigit(char **av);
+int	ft_av_isdigit(char **av);
 int	dupli_same(ts_node *a, int nbr);
-char	**ft_split(char const *s, char c);
 int	bool_error(int error, int b, char **av);
-
 
 
 # endif

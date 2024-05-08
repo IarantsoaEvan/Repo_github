@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/02/22 12:18:19 by irabesan          #+#    #+#             */
+/*   Updated: 2024/02/22 12:18:21 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
+#include "libft.h"
+#include <stdlib.h>
+
+char	*ft_strdup(const char *src)
 {
-	int	i;
+	char	*dup;
+	int		i;
+	char	*csrc;
 
-	i = 1;
-	while (av[i] != NULL)
+	csrc = (char *)src;
+	i = ft_strlen(csrc);
+	i = i + 1;
+	dup = malloc(i * sizeof(char));
+	if (!dup)
 	{
-		free(av[i]);
+		dup = NULL;
+		return (0);
+	}
+	i = 0;
+	while (csrc[i] != '\0')
+	{
+		dup[i] = csrc[i];
 		i++;
 	}
-}
-int	bool_error(int error, int b, char **av)
-{
-	if (b)
-		free_av(av);
-	if (error)
-	{
-		write(2, "error\n", 6);
-		return (1);
-	}
-	return (0);	
+	dup[i] = '\0';
+	return (dup);
 }

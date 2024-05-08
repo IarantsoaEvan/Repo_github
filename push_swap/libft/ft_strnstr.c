@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/02/21 15:49:49 by irabesan          #+#    #+#             */
+/*   Updated: 2024/02/21 15:50:00 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
+#include "libft.h"
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
-	i = 1;
-	while (av[i] != NULL)
+	i = 0;
+	if (*little == '\0')
+		return ((char *)big);
+	while (big[i] != '\0' && i <= len)
 	{
-		free(av[i]);
+		j = 0;
+		while (big[i + j] == little[j] && i + j < len)
+		{
+			j++;
+			if (little[j] == '\0')
+				return ((char *)&big[i]);
+		}
 		i++;
 	}
-}
-int	bool_error(int error, int b, char **av)
-{
-	if (b)
-		free_av(av);
-	if (error)
-	{
-		write(2, "error\n", 6);
-		return (1);
-	}
-	return (0);	
+	return (NULL);
 }

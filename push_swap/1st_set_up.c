@@ -54,7 +54,7 @@ int	set_up(ts_node **a, char **av)
 	idx = 0;
 	while (av[idx])
 	{
-		if (ft_isdigit(av))
+		if (ft_av_isdigit(av))
 			return (1);
 		nbr = ft_atl(av[idx]);
 		if (nbr < -2147483648 || nbr > 2147483647)

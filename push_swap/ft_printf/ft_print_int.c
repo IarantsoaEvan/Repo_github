@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/03/08 11:35:38 by irabesan          #+#    #+#             */
+/*   Updated: 2024/03/08 11:35:39 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
-{
-	int	i;
+#include "ft_printf.h"
 
-	i = 1;
-	while (av[i] != NULL)
-	{
-		free(av[i]);
-		i++;
-	}
-}
-int	bool_error(int error, int b, char **av)
+int	ft_print_int(int nbr)
 {
-	if (b)
-		free_av(av);
-	if (error)
-	{
-		write(2, "error\n", 6);
-		return (1);
-	}
-	return (0);	
+	size_t	len;
+	char	*str_num;
+
+	str_num = ft_itoa(nbr);
+	ft_print_str(str_num);
+	len = ft_strlen(str_num);
+	free(str_num);
+	return (len);
 }

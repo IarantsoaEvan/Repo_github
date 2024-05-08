@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/02/20 07:36:25 by irabesan          #+#    #+#             */
+/*   Updated: 2024/02/20 08:12:08 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
+#include "libft.h"
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int	i;
+	unsigned char	*dest1;
+	unsigned char	*src1;
+	size_t			i;
 
-	i = 1;
-	while (av[i] != NULL)
+	i = 0;
+	dest1 = (unsigned char *)dest;
+	src1 = (unsigned char *)src;
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	while (i < n)
 	{
-		free(av[i]);
+		dest1[i] = src1[i];
 		i++;
 	}
-}
-int	bool_error(int error, int b, char **av)
-{
-	if (b)
-		free_av(av);
-	if (error)
-	{
-		write(2, "error\n", 6);
-		return (1);
-	}
-	return (0);	
+	return (dest1);
 }

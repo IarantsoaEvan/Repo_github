@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/02/22 11:01:45 by irabesan          #+#    #+#             */
+/*   Updated: 2024/02/22 11:01:49 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
+#include "libft.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	size_t	i;
+	int		delta;
 
-	i = 1;
-	while (av[i] != NULL)
+	i = 0;
+	while (i < n)
 	{
-		free(av[i]);
+		delta = *(const unsigned char *)s1++ - *(const unsigned char *)s2++;
+		if (delta)
+			return (delta);
 		i++;
 	}
+	return (0);
 }
-int	bool_error(int error, int b, char **av)
+/*int main()
 {
-	if (b)
-		free_av(av);
-	if (error)
-	{
-		write(2, "error\n", 6);
-		return (1);
-	}
-	return (0);	
-}
+	int arr[] = {1,2,3,4,5};
+	int arr1[] = {1,2,3,5,4};
+	int p = ft_memcmp(arr, arr1, 4);
+	printf("%d", p);
+	return (0);
+}*/

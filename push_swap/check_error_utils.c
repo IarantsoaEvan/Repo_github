@@ -38,7 +38,7 @@ long	ft_atl(const char *str)
 	return (result * sign);
 }
 
-int	ft_isdigit(char **av)
+int	ft_av_isdigit(char **av)
 {
 	int	i;
 	int	j;
@@ -48,7 +48,8 @@ int	ft_isdigit(char **av)
 	while(av[i])
 	{
 		if((av[i][j] > '0' && av[i][j] < '9')
-		 || (av[i][j] == '-' && av[i][j + 1] > '0' && av[i][j] < '9'))
+		 || (av[i][j] == '-' && av[i][j + 1] > '0' && av[i][j] < '9')
+		 || (av[i][j] == '+' && av[i][j + 1] > '0' && av[i][j] < '9'))
 			j++;
 		else
 			return (0);

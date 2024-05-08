@@ -1,62 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_utils.c                                   :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 08:55:21 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/29 11:09:40 by irabesan         ###   ########.fr       */
+/*   Created: 2024/02/23 12:09:08 by irabesan          #+#    #+#             */
+/*   Updated: 2024/02/23 12:09:11 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-static size_t	ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	unsigned int	i;
-	size_t			len;
-
-	i = 0;
-	len = 0;
-	while (src[len] != '\0')
-		len++;
-	if (size == 0)
-		return (len);
-	while (src[i] != '\0' && i < (size - 1))
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	if (size != 0)
-		dest[i] = '\0';
-	return (len);
-}
+#include "libft.h"
 
 static size_t	ft_count_w(char const *s, char c)
 {
 	size_t	tokens;
-	size_t	x;
-	size_t	y;
+	size_t	i;
+	size_t	j;
 	int		condition;
 
-	x = 0;
-	y = 0;
+	i = 0;
+	j = 0;
 	tokens = 0;
 	condition = 0;
-	while (s[x] == c)
-		x++;
-	y = x;
-	while (s[y] != '\0')
+	while (s[i] == c)
+		i++;
+	j = i;
+	while (s[j] != '\0')
 	{
-		if (s[y] != c && condition == 0)
+		if (s[j] != c && condition == 0)
 		{
 			condition = 1;
 			tokens++;
 		}
-		else if (s[y] == c)
+		else if (s[j] == c)
 			condition = 0;
-		y++;
+		j++;
 	}
 	return (tokens);
 }
@@ -65,7 +44,7 @@ static char	*paste_w(char const *str, size_t len)
 {
 	char	*str1;
 
-	str1 = (char *)malloc(sizeof(char) * (len + 1));
+	str1 = (char *)malloc((len + 1) * sizeof(char));
 	if (!str1)
 	{
 		free(str1);
@@ -105,16 +84,16 @@ char	**ft_split(char const *s, char c)
 	char	**str;
 	char	**final;
 
-	str = (char **)malloc(sizeof(char *) * (ft_count_w(s, c) + 1));
+	str = (char **)malloc((ft_count_w(s, c) + 1) * sizeof(char *));
 	if (!str)
 	{
-		free(str);
+		free (str);
 		return (NULL);
 	}
 	final = stock_new_arr(str, s, c);
 	if (!final)
 	{
-		free(str);
+		free(final);
 		return (NULL);
 	}
 	return (final);

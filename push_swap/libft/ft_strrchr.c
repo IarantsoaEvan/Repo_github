@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/02/21 11:31:43 by irabesan          #+#    #+#             */
+/*   Updated: 2024/02/21 11:31:45 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
-{
-	int	i;
+#include "libft.h"
 
-	i = 1;
-	while (av[i] != NULL)
-	{
-		free(av[i]);
-		i++;
-	}
-}
-int	bool_error(int error, int b, char **av)
+char	*ft_strrchr(const char *str, int c)
 {
-	if (b)
-		free_av(av);
-	if (error)
+	char	occur;
+	int		i;
+
+	i = ft_strlen(str);
+	occur = (char)c;
+	if (!str)
+		return (NULL);
+	while (i >= 0)
 	{
-		write(2, "error\n", 6);
-		return (1);
+		if (str[i] == occur)
+			return ((char *)(str + i));
+		i--;
 	}
-	return (0);	
+	return (0);
 }
+/*int main()
+{
+	const char *str = "ka rakory";
+	int c = 97;
+	char *p = ft_strrchr(str, c);
+	printf("%s", p);
+	return (0);
+}*/

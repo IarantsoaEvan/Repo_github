@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/02/19 10:28:21 by irabesan          #+#    #+#             */
+/*   Updated: 2024/02/19 11:27:23 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
+int	ft_isalpha(int c)
 {
-	int	i;
-
-	i = 1;
-	while (av[i] != NULL)
-	{
-		free(av[i]);
-		i++;
-	}
-}
-int	bool_error(int error, int b, char **av)
-{
-	if (b)
-		free_av(av);
-	if (error)
-	{
-		write(2, "error\n", 6);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
-	}
-	return (0);	
+	else
+		return (0);
 }

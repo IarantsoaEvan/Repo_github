@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_error.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:45 by irabesan         ###   ########.fr       */
+/*   Created: 2024/02/21 07:42:26 by irabesan          #+#    #+#             */
+/*   Updated: 2024/02/21 07:42:27 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
+#include "libft.h"
+
+char	*ft_strchr(const char *str, int c)
 {
-	int	i;
+	char	occur;
+	int		i;
 
-	i = 1;
-	while (av[i] != NULL)
-	{
-		free(av[i]);
+	i = 0;
+	occur = (char)c;
+	while (str[i] != '\0' && occur != str[i])
 		i++;
-	}
+	if (occur == str[i])
+		return ((char *)(str + i));
+	return (NULL);
 }
-int	bool_error(int error, int b, char **av)
+/*int main()
 {
-	if (b)
-		free_av(av);
-	if (error)
-	{
-		write(2, "error\n", 6);
-		return (1);
-	}
-	return (0);	
-}
+	const char *str = "karakory";
+	int c = 111;
+	char *p = ft_strchr(str, c);
+	printf("%s", p);
+	return (0);
+}*/
