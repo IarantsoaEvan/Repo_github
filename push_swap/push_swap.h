@@ -30,7 +30,7 @@ typedef struct	sst_node
 }ts_node;
 
 ts_node	*whos_last(ts_node *root);
-void	add_nd(ts_node *stack, int nbr);
+void	add_nd(ts_node **stack, int nbr);
 int	set_up(ts_node **a, char **av);
 long	ft_atl(const char *str);
 int	ft_av_isdigit(char **av);

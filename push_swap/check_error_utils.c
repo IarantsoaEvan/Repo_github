@@ -38,34 +38,55 @@ long	ft_atl(const char *str)
 	return (result * sign);
 }
 
+static int	ft_is_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ' ')
+			i++;
+		else
+			return (1);
+	}
+	return (0);
+}
 int	ft_av_isdigit(char **av)
 {
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	j = 0;
 	while(av[i])
 	{
-		if((av[i][j] > '0' && av[i][j] < '9')
-		 || (av[i][j] == '-' && av[i][j + 1] > '0' && av[i][j] < '9')
-		 || (av[i][j] == '+' && av[i][j + 1] > '0' && av[i][j] < '9'))
-			j++;
-		else
+		if (ft_is_space(av[i]) == 0)
 			return (0);
+		while (av[i][j] != '\0')
+		{
+			if(ft_isdigit(av[i][j]) == 1 || (av[i][j] == ' ')
+		 	 || ((av[i][j] == '-' || av[i][j] == '+') && ft_isdigit(av[i][j + 1]) == 1))
+				j++;
+			else
+				return (0);
+		}
+		i++;
 	}
 	return (1);
 }
 
 int	dupli_same(ts_node *a, int nbr)
 {
+	ts_node *temp;
 	if (!a)
-		return (1);
-	while (a)
+		return (0);
+	temp = a;
+	while (temp)
 	{
-		if (a->data == nbr)
+		if (temp->data == nbr)
 			return (1);
-		a = a->next;
+		temp = temp->next;
 	}
 	return (0);
 }

@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irabesan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:55:44 by irabesan          #+#    #+#             */
-/*   Updated: 2024/05/09 11:53:56 by irabesan         ###   ########.fr       */
+/*   Created: 2024/05/09 15:20:04 by irabesan          #+#    #+#             */
+/*   Updated: 2024/05/09 15:20:06 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//if we use split function-> free_av
-static void	free_av(char **av)
+char	*ft_join_av(char **av)
 {
-	int	i;
+	int	j;
+	char	*str;
 
-	i = 1;
-	while (av[i] != NULL)
+	j = 2;
+	str = ft_strdup(av[1]);
+	while (av[j] != NULL)
 	{
-		free(av[i]);
-		i++;
+		str = ft_strjoin(str, " ");
+		str = ft_strjoin(str, av[j++]);
 	}
-}
-int	bool_error(int error, int b, char **av)
-{
-	if (b)
-		free_av(av);
-	if (error == 1)
-	{
-		write(2, "error\n", 6);
-		return (1);
-	}
-	return (0);	
+	return (str);
 }
