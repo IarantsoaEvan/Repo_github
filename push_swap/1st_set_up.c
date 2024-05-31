@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-ts_node	*whos_last(ts_node *root)
+t_node	*whos_last(t_node *root)
 {
 	if (root == NULL)
 		return (NULL);
@@ -22,15 +22,15 @@ ts_node	*whos_last(ts_node *root)
 	return (root);
 }
 
-void	add_nd(ts_node **stack, int nbr)
+void	add_nd(t_node **stack, int nbr)
 {
-	
-	ts_node	*node;
-	ts_node	*last_nd;
+
+	t_node	*node;
+	t_node	*last_nd;
 	
 	if (!stack)
 	 	return ;
-	node = malloc(sizeof(ts_node));
+	node = malloc(sizeof(t_node));
 	if (!node)
 		return ;
 	node->next = NULL;
@@ -47,13 +47,11 @@ void	add_nd(ts_node **stack, int nbr)
 		node->prev = last_nd;
 	}
 }
-int	set_up(ts_node **a, char **av)
+
+int	set_up(t_node **a, char **av)
 {
 	long	nbr;
-	ts_node *temp;
-	//int	idx;
-	//idx = 0;
-	
+
 	while (*av)
 	{
 		if (ft_av_isdigit(av) == 0)
@@ -63,15 +61,8 @@ int	set_up(ts_node **a, char **av)
 		 	return (1);
 		if (dupli_same(*a, (int)nbr) == 1)
 		  	return (1);
-		//printf("%d\n", (int)nbr);
 		add_nd(a, (int)nbr);
 		av++;
-	}
-	temp = *a;
-	while (temp)
-	{
-		printf("%d\n", temp->data);
-		temp = temp->next;
 	}
 	return (0);
 }

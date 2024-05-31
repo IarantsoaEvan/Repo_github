@@ -11,26 +11,38 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	main(int ac, char **av)
 {
-	ts_node	*a;
-	//ts_node	*b;
+	t_node	*a;
+	t_node	*b;
 	int	error;
-	
+	char	**str_av;
 
 	a = NULL;
-	//b = NULL;
-	if (ac == 1 || (ac == 2 && !av[1][0]))
+	b = NULL;
+	if (ac == 1)
 		return (1);
-	else if (ac == 2)
-		av = ft_split(av[1], ' ');
+	if (first_check(av) == 1)
+	{
+		ft_printf("error\n");
+		return (1);
+	
+	}
+	else if (ac >= 2)
+		str_av = ft_join_av(av);
 	else
-		ft_join_av(av); 
-	error = set_up(&a, av);
-	if (bool_error(error, ac == 2, av))
-		return (1);
+		str_av = ft_join_av(av);
+	error = set_up(&a, str_av);
+	if (!(ft_is_sorted(a)) || (!(bool_error(error, ac == 2, str_av))))
+	{
+		if (stack_len(a) == 2)
+			sa(&a);
+		else if (stack_len(a) == 3)
+			sort_three(&a);
+		else
+			sort_1(&a, &b);
+			
+	}
 	return (0);
 }
-

@@ -12,12 +12,28 @@
 
 #include "push_swap.h"
 
-static void	push(ts_node **dest, ts_node **src)
+static void	push(t_node **dest, t_node **src)
 {
-	ts_node	*nd;
+	t_node	*tmp;
 
 	if (*src == NULL)
 		return ;
-	nd = *src;
-	*src = (*src)->next;
+	tmp = (*src)->next;
+	(*src)->next = *dest;
+	if (*dest)
+		(*dest)->prev = *src;
+	*dest = *src;
+	*src = tmp;
+}
+
+void	pa(t_node **a, t_node **b)
+{
+	push(a, b);
+	ft_printf("pa\n");
+}
+
+void	pb(t_node **b, t_node **a)
+{
+	push(b, a);
+	ft_printf("pb\n");
 }

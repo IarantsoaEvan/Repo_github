@@ -4,7 +4,17 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 CFILES = 1st_set_up.c \
 	check_error_utils.c \
-	print_error.c
+	print_error.c \
+	push_swap_utils.c \
+	push_swap_utils2.c \
+	action_push.c \
+	action_swap.c \
+	action_rotate.c \
+	action_rrotate.c \
+	algo.c \
+	move_inits_a.c \
+	move_inits_b.c \
+	
 
 MK_PRINTF = ./ft_printf/libftprintf.a
 	

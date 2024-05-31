@@ -15,8 +15,8 @@
 // because arg always arrives as a string even without "" 
 long	ft_atl(const char *str)
 {
-	size_t	i;
-	int		sign;
+	size_t		i;
+	int			sign;
 	long		result;
 
 	i = 0;
@@ -38,7 +38,7 @@ long	ft_atl(const char *str)
 	return (result * sign);
 }
 
-static int	ft_is_space(char *str)
+int	ft_is_space(char *str)
 {
 	int	i;
 
@@ -48,10 +48,11 @@ static int	ft_is_space(char *str)
 		if (str[i] == ' ')
 			i++;
 		else
-			return (1);
+			return (0);
 	}
-	return (0);
+	return (1);
 }
+
 int	ft_av_isdigit(char **av)
 {
 	int	i;
@@ -59,14 +60,15 @@ int	ft_av_isdigit(char **av)
 
 	i = 0;
 	j = 0;
-	while(av[i])
+	while (av[i])
 	{
-		if (ft_is_space(av[i]) == 0)
+		if (ft_is_space(av[i]) == 1)
 			return (0);
 		while (av[i][j] != '\0')
 		{
-			if(ft_isdigit(av[i][j]) == 1 || (av[i][j] == ' ')
-		 	 || ((av[i][j] == '-' || av[i][j] == '+') && ft_isdigit(av[i][j + 1]) == 1))
+			if (ft_isdigit(av[i][j]) == 1 || (av[i][j] == ' ')
+			|| ((av[i][j] == '-' || av[i][j] == '+')
+			&& ft_isdigit(av[i][j + 1]) == 1))
 				j++;
 			else
 				return (0);
@@ -76,9 +78,10 @@ int	ft_av_isdigit(char **av)
 	return (1);
 }
 
-int	dupli_same(ts_node *a, int nbr)
+int	dupli_same(t_node *a, int nbr)
 {
-	ts_node *temp;
+	t_node	*temp;
+
 	if (!a)
 		return (0);
 	temp = a;
