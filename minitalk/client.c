@@ -20,21 +20,22 @@ void	ascii_to_bin(int pid, char *m_str)
 	idx = 0;
 	while (m_str[idx])
 	{
-		byte = 0;
-		while (byte++ < 8)
+		byte = -1;
+		while (++byte < 8)
 		{
-			if (((unsigned char)(m_str[idx]) >> (7 - idx) & 1) == 1)
-				kill(pid, SIGUSR1);
-			else if (((unsigned char)(m_str[idx]) >> (7 - idx) & 1) == 0)
+			if (((unsigned char)(m_str[idx] >> (7 - byte)) & 1) == 0)
 				kill(pid, SIGUSR2);
+			else if (((unsigned char)(m_str[idx] >> (7 - byte)) & 1) == 1)
+				kill(pid, SIGUSR1);
+			usleep(50);
 		}
 	idx++;
 	}
-	idx = 0;
-	while (idx++ <= 7)
+	byte = 0;
+	while (byte++ < 8)
 	{
 		kill(pid, SIGUSR2);
-		usleep(45);
+		usleep(50);
 	}
 	
 }
@@ -64,4 +65,5 @@ int	main(int ac, char **av)
 		ft_printf("Invalid numbers of arguments\n");
 		ft_printf("You must enter the PID then the message\n");
 	}
+	return (0);
 }

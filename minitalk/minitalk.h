@@ -16,5 +16,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "ft_printf/ft_printf.h"
+#include "libft/libft.h"
 
 #endif
