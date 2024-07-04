@@ -4,6 +4,13 @@ MK_MLX = mlx_linux
 MAIN = main.c
 CC = gcc
 
+CFILES = read_map.c \
+	bresenham.c \
+
+MK_PRINTF = ./ft_printf/libftprintf.a
+
+OFILES = $(CFILES:.c=.o)
+
 all: $(NAME)
 
 %.o: %.c
@@ -13,16 +20,20 @@ $(MK_PRINTF):
 	cd ft_printf/ && make && cd ..
 
 
-$(NAME): $(MK_PRINTF) $(MAIN)
+$(NAME): $(MK_PRINTF) $(OFILES) $(MAIN)
 	make -C $(MK_MLX)
-	$(CC) $(MAIN) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OFILES) $(MAIN) -Lft_printf -lftprintf -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
 	make clean -C $(MK_MLX)
 	rm -f $(OFILES)
+	cd ft_printf/ && make clean && cd ..
+	cd libft/ && make clean
 	
 fclean: clean
 	make clean -C $(MK_LMX)
 	rm -f $(NAME)
+	cd ft_printf/ && make fclean && cd ..
+	cd libft/ && make fclean && cd ..
 
 re: fclean all

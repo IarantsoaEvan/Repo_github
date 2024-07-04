@@ -22,6 +22,15 @@
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
 
+typedef struct	s_matrix
+{
+	int	width;
+	int	height;
+	int	**z_matrix;
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_matrix;
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
@@ -31,12 +40,14 @@ char	*ft_left(char *stck);
 char	*ft_right(char *stck);
 char	*get_next_line(int fd);
 char	ft_found_nl(char *stck, char c);
-typedef struct	s_matrix
-{
-	int	width;
-	int	height;
-	int	**z_matrix;
-	void	*mlx_ptr;
-	void	*wind_ptr;
-}	t_matrix;
+float	max_delta(float delta_x, float delta_y);
+float	ft_abs(float i);
+void	bresenham(float x1, float y1, float x2, float y2, t_matrix *data);
+int	get_width(char *file);
+int	get_height(char *file);
+void	fill_matrix(int *z_line, char *line);
+void read_file(char *file, t_matrix *data);
+
+
+
 #endif

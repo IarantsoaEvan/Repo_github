@@ -47,7 +47,7 @@ int	get_width(char *file)
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	line = get_nex_line(fd);
+	line = get_next_line(fd);
 	width = ft_count_w(line, ' ');
 	free(line);
 	close(fd);
@@ -75,7 +75,7 @@ int	get_height(char *file)
 	return (height);
 }
 
-void	fill_matrix(int *z_line, char *line);
+void	fill_matrix(int *z_line, char *line)
 {
 	char	**nms;
 	int	k;
@@ -86,11 +86,11 @@ void	fill_matrix(int *z_line, char *line);
 	{
 		z_line[k] = ft_atoi(nms[k]);
 		free(nms[k]);
-		i++;
+		k++;
 	}
 	free(nms);
 }
-void read_map(char *file, t_matrix *data)
+void	read_file(char *file, t_matrix *data)
 {
 	int	fd;
 	char	*line;
@@ -100,7 +100,7 @@ void read_map(char *file, t_matrix *data)
 
 	data->height = get_height(file);
 	data->width = get_width(file);
-	data->z_matrix(int**)malloc(sizeof(int*) * (data->height + 1));
+	data->z_matrix = (int**)malloc(sizeof(int*) * (data->height + 1));
 	while(i <= data->height)
 		data->z_matrix[i++] = (int*)malloc(sizeof(int) * (data->width + 1));
 	fd = open(file, O_RDONLY);

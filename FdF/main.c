@@ -21,12 +21,13 @@ int key_press(int key, void *data)
 int main(int ac, char **av)
 {
 	t_matrix	*data;
-	int	i;
-	int	j;
-
-	i = 0;
 
 	data = (t_matrix*)malloc(sizeof(t_matrix));
-	read_map(av[1], data);
-	while (i <)
+	read_file(av[1], data);
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1100, 1000, "FDF");
+	bresenham(10, 10, 600, 300, data);
+	mlx_key_hook(data->win_ptr, key_press, NULL);
+	mlx_loop(data->mlx_ptr);
+	return (0);
 }
