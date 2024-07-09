@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../fdf.h"
 
-char	*ft_strdup(char *src)
+char	*ft_strdup_1(char *src)
 {
 	char	*dup;
 	int		i;
 	char	*csrc;
 
 	csrc = (char *)src;
-	i = ft_strlen(csrc);
+	i = ft_strlen_1(csrc);
 	i = i + 1;
 	dup = malloc(i * sizeof(char));
 	if (!dup)
@@ -37,7 +37,7 @@ char	*ft_strdup(char *src)
 	return (dup);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_1(const char *str)
 {
 	size_t	l;
 
@@ -63,7 +63,7 @@ char	ft_found_nl(char *stck, char c)
 	return ('N');
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_1(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -73,7 +73,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	result = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	result = (char *)malloc(sizeof(char) * (ft_strlen_1(s1) + ft_strlen_1(s2) + 1));
 	if (!result)
 		return (free(s1), NULL);
 	while (s1[j])

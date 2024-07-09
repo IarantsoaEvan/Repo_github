@@ -51,9 +51,5 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int nb, int fd);
-char	*stck_buff(int fd, char *stck);
-char	*ft_left(char *stck);
-char	*ft_right(char *stck);
-char	*get_next_line(int fd);
-char	ft_found_nl(char *stck, char c);
+
 #endif

@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../fdf.h"
 
 char	*join(char *stck, char *buff)
 {
 	if (stck == NULL)
-		return (ft_strdup(buff));
-	stck = ft_strjoin(stck, buff);
+		return (ft_strdup_1(buff));
+	stck = ft_strjoin_1(stck, buff);
 	return (stck);
 }
 
@@ -82,13 +82,13 @@ char	*ft_right(char *stck)
 		l++;
 	if (stck[l] == '\n')
 		l++;
-	new_stck = (char *)malloc (sizeof(char) * (ft_strlen(stck) - l + 1));
+	new_stck = (char *)malloc (sizeof(char) * (ft_strlen_1(stck) - l + 1));
 	if (!new_stck)
 	{
 		free(stck);
 		return (NULL);
 	}
-	while (l < ft_strlen(stck))
+	while (l < ft_strlen_1(stck))
 		new_stck[i++] = stck[l++];
 	new_stck[i] = '\0';
 	free(stck);
