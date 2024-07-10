@@ -41,16 +41,26 @@ void	bresenham(float x1, float y1, float x2, float y2, t_matrix *data)
 	float	delta_y;
 	int	max;
 	int	z1;
+	int	z2;
 
 	z1 = data->z_matrix[(int)y1][(int)x1];
-	//=========color=========
-	data->color  = choose_color(z1, data->color);
+	z2 = data->z_matrix[(int)y2][(int)x2];
 	//=========zoom==========
 	x1 *= data->zoomer;
 	x2 *= data->zoomer;
 	y1 *= data->zoomer;
 	y2 *= data->zoomer;
+	//=========color=========
+	data->color  = choose_color(z1, data->color);
 	//========3D=============
+	per_iso(&x1, &y1, z1);
+	per_iso(&x2, &y2, z2);
+	
+	x1 += 150;
+	x2 += 150;
+	y1 += 150;
+	y2 += 150;
+	
 	
 	delta_x = x2 - x1;
 	delta_y = y2 - y1;

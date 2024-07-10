@@ -60,5 +60,6 @@ char	*ft_strjoin_1(char *s1, char *s2);
 char	*ft_strdup_1(char *src);
 void	draw(t_matrix *data);
 int choose_color(int z, int color);
+void	per_iso(float *x, float *y, float z);
 
 #endif

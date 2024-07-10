@@ -26,7 +26,7 @@ int main(int ac, char **av)
 	read_file(av[1], data);
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 1100, 1000, "FDF");
-	data->zoomer = 30;
+	data->zoomer = 20;
 	draw(data);
 	mlx_key_hook(data->win_ptr, key_press, NULL);
 	mlx_loop(data->mlx_ptr);

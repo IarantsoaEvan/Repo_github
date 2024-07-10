@@ -14,6 +14,7 @@
 
 void	per_iso(float *x, float *y, float z)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8);
+	*x = (*x - *y) * cos(45);
+	*y = (*x + *y) * sin(45) - z;
 }
+

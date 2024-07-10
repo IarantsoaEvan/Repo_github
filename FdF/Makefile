@@ -6,6 +6,7 @@ CC = gcc
 
 CFILES = read_map.c \
 	bresenham.c \
+	isometry.c
 
 MK_PRINTF = ./ft_printf/libftprintf.a
 
