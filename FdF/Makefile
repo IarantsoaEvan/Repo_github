@@ -6,7 +6,8 @@ CC = gcc
 
 CFILES = read_map.c \
 	bresenham.c \
-	isometry.c
+	isometry.c \
+	fdf_utils.c
 
 MK_PRINTF = ./ft_printf/libftprintf.a
 
@@ -32,8 +33,8 @@ clean:
 	cd libft/ && make clean
 	
 fclean: clean
-	make clean -C $(MK_LMX)
 	rm -f $(NAME)
+	make clean -C $(MK_LMX)
 	cd ft_printf/ && make fclean && cd ..
 	cd libft/ && make fclean && cd ..
 

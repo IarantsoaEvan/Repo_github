@@ -12,9 +12,29 @@
 
 #include "fdf.h"
 
-void	per_iso(float *x, float *y, float z)
+void	per_iso(float *x, float *y, float z, double teta)
 {
-	*x = (*x - *y) * cos(45);
-	*y = (*x + *y) * sin(45) - z;
+	*x = (*x - *y) * cos(teta);
+	*y = (*x + *y) * sin(teta) - z;
 }
 
+void x_rotation(float *x, float *y, float *z, double teta)
+{
+	(void)(x);
+	*y = *y * cos(teta) + *z * sin(teta);
+	*z = -(*y) * sin(teta) + *z * (cos(teta));
+}
+
+void y_rotation(float *x, float *y, float *z, double teta)
+{
+	(void)(y);
+	*x = *x * cos(teta) + *z * sin(teta);
+	*z = -(*x) * sin(teta) + *z * (cos(teta));
+}
+
+void z_rotation(float *x, float *y, float *z, double teta)
+{
+	(void)(z);
+	*x = *x * cos(teta) - *y * sin(teta);
+	*y = -(*x) * sin(teta) + *y * (cos(teta));
+}

@@ -90,7 +90,7 @@ void	fill_matrix(int *z_line, char *line)
 	}
 	free(nms);
 }
-void	read_file(char *file, t_matrix *data)
+void	read_file(char *file, t_fdf *data)
 {
 	int	fd;
 	char	*line;

@@ -12,12 +12,12 @@
 
 #include "fdf.h"
 
-int choose_color(int z, int color)
+int choose_color(int z, int z1, int color)
 {
-	if (z > 0)
-		color = 0xe80c0c;
+	if (z > 0 || z1 > 0)
+		color = 0x0000FF00;
 	else
-		color = 0xffffff;
+		color = 0x000000FF;
 	return (color);
 }
 float	max_delta(float delta_x, float delta_y)
@@ -28,14 +28,7 @@ float	max_delta(float delta_x, float delta_y)
 		return (delta_y);
 }
 
-float	ft_abs(float i)
-{
-	if (i < 0)
-		return (-i);
-	else
-		return (i);
-}
-void	bresenham(float x1, float y1, float x2, float y2, t_matrix *data)
+void	bresenham(float x1, float y1, float x2, float y2, t_fdf *data)
 {
 	float	delta_x;
 	float	delta_y;
@@ -46,22 +39,14 @@ void	bresenham(float x1, float y1, float x2, float y2, t_matrix *data)
 	z1 = data->z_matrix[(int)y1][(int)x1];
 	z2 = data->z_matrix[(int)y2][(int)x2];
 	//=========zoom==========
-	x1 *= data->zoomer;
-	x2 *= data->zoomer;
-	y1 *= data->zoomer;
-	y2 *= data->zoomer;
+	ft_zoomer(&x1, &x2, &y1, &y2, data);
 	//=========color=========
-	data->color  = choose_color(z1, data->color);
+	data->color  = choose_color(z1, z2, data->color);
 	//========3D=============
-	per_iso(&x1, &y1, z1);
-	per_iso(&x2, &y2, z2);
-	
-	x1 += 150;
-	x2 += 150;
-	y1 += 150;
-	y2 += 150;
-	
-	
+	per_iso(&x1, &y1, z1, (M_PI / 6));
+	per_iso(&x2, &y2, z2, (M_PI / 6));
+	//=======gapper=========
+	ft_gapper(&x1, &x2, &y1, &y2, data);
 	delta_x = x2 - x1;
 	delta_y = y2 - y1;
 	max = max_delta((ft_abs(delta_x)), (ft_abs(delta_y)));
@@ -73,10 +58,9 @@ void	bresenham(float x1, float y1, float x2, float y2, t_matrix *data)
 		x1 += delta_x;
 		y1 += delta_y;
 	}
-	
 }
 
-void	draw(t_matrix *data) // draw all lines
+void	draw(t_fdf *data) // draw all lines
 {
 	int	x;
 	int 	y;
