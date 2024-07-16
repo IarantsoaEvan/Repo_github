@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_init.c                                        :+:      :+:    :+:   */
+/*   fdf_utils_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 14:17:16 by irabesan          #+#    #+#             */
-/*   Updated: 2024/07/15 14:17:17 by irabesan         ###   ########.fr       */
+/*   Created: 2024/07/16 14:45:45 by irabesan          #+#    #+#             */
+/*   Updated: 2024/07/16 14:45:48 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_point	*point_init(int x, int y, t_fdf *fdf)
+void	free_split(char **split)
 {
-	t_point	*data;
+	int i;
 
-	data = (t_point *)malloc(sizeof(t_point));
-	if(!data)
-		return (NULL);
-	data->x = x;
-	data->y = y;
-	data->z = fdf->matrix[y][x].z.relief * fdf->relief;
-	return (data);
+	i = 0;
+	while(split[i] != NULL)
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+int	parsing_error(int width, int i, int *check_fd, char **split)
+{
+	free_split(split);
+	if (width > i)
+	{
+		*check_fd = -2;
+		return (1);
+	}
+	return (0);
 }

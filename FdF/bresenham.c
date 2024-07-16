@@ -43,8 +43,8 @@ void	bresenham(float x1, float y1, float x2, float y2, t_fdf *data)
 	//=========color=========
 	data->color  = choose_color(z1, z2, data->color);
 	//========3D=============
-	per_iso(&x1, &y1, z1, (M_PI / 6));
-	per_iso(&x2, &y2, z2, (M_PI / 6));
+	per_iso(&x1, &y1, z1, (0.523599));
+	per_iso(&x2, &y2, z2, (0.523599));
 	//=======gapper=========
 	ft_gapper(&x1, &x2, &y1, &y2, data);
 	delta_x = x2 - x1;

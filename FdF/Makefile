@@ -4,10 +4,16 @@ MK_MLX = mlx_linux
 MAIN = main.c
 CC = gcc
 
-CFILES = read_map.c \
-	bresenham.c \
+CFILES = atoi_hex.c \
+	brensenham2.c \
+	data_init.c \
+	draw_map.c \
+	error.c \
+	fdf_utils.c \
+	fdf_utils_map.c \
 	isometry.c \
-	fdf_utils.c
+	mp_colors.c \
+	stock_z.c \
 
 MK_PRINTF = ./ft_printf/libftprintf.a
 

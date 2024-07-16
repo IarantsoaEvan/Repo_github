@@ -1,54 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 11:08:19 by irabesan          #+#    #+#             */
-/*   Updated: 2024/07/15 11:08:20 by irabesan         ###   ########.fr       */
+/*   Created: 2024/07/03 09:06:23 by irabesan          #+#    #+#             */
+/*   Updated: 2024/07/03 09:06:27 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	my_mlx_pxp(t_fdf *fdf, int x, int y)
-{
-	char	*img_ptr;
-
-	if((x >= 0 && x < fdf->width) && (y >= 0 && y < fdf->height))
-	{
-		fdf->img_data = mlx_get_data_addr(fdf->img_ptr \
-				,&fdf->bpp, &fdf->size_line, &fdf->endian);
-		img_ptr = fdf->img_data + (y * fdf->size_line + x * (fdf->bpp / 8));
-		*(unsigned int *)img_ptr = fdf->color;
-	}
-}
-/*
-float	ft_abs(float i)
-{
-	if (i < 0)
-		return (-i);
-	else
-		return (i);
-}
-
-void	ft_zoomer(float *x1, float *x2, float *y1, float *y2, t_fdf *data)
-{
-	*x1 *= data->zoomer;
-	*x2 *= data->zoomer;
-	*y1 *= data->zoomer;
-	*y2 *= data->zoomer;
-}
-
-void	ft_gapper(float *x1, float *x2, float *y1, float *y2, t_fdf *data)
-{
-	*x1 += data->gap_x;
-	*x2 += data->gap_x;
-	*y1 += data->gap_y;
-	*y2 += data->gap_y;
-}
-*/
 int key_press(int key, t_fdf *data)
 {
 	ft_printf("%d\n", key);
@@ -70,8 +33,23 @@ int key_press(int key, t_fdf *data)
 	if (key == 113)
 		data->zoomer += 1;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	draw_the_thing(data);
+	draw(data);
 	if (key == 32)
 		data->zoomer -= 1;
 	return(0);
+}
+
+int main(int ac, char **av)
+{
+	t_fdf	*data;
+
+	data = (t_fdf*)malloc(sizeof(t_fdf));
+	read_file(av[1], data);
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "FDF");
+	data->zoomer = 20;
+	draw(data);
+	mlx_key_hook(data->win_ptr, key_press, data);
+	mlx_loop(data->mlx_ptr);
+	return (0);
 }
