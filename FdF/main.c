@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
+/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:21:09 by irabesan          #+#    #+#             */
-/*   Updated: 2024/07/16 13:21:10 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:29:43 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	init_trans_view(t_fdf *fdf)
 	fdf->x_p = (WIDTH / 2) - (fdf->width / 2);
 	fdf->y_p = (HEIGHT / 2) - (fdf->height / 2);
 	fdf->trans = 1;
-	fdf->angle = ANG;
+	fdf->angle = D_ANG;
 	fdf->relief = 1;
 	
 }
 
 void	init_graph(t_fdf *fdf, char *file_fdf, int *check_fd)
 {
-	t_lkl	*stack;
+	//t_lkl	*stack;
 	int	fd;
 
 	fd = open(file_fdf, O_RDONLY);
@@ -61,14 +61,15 @@ void	init_graph(t_fdf *fdf, char *file_fdf, int *check_fd)
 		print_error(3);
 	if (*check_fd == -2)
 		print_error(4);
-	stack = fdf->stack;
-	fdf->matrix = ft_matrix(fdf, stack);
-	free_lkl(fdf->stack, fdf);
-	fdf->stack = NULL;
+	//stack = fdf->stack;
+	fdf->matrix = ft_matrix(fdf, fdf->stack);
+	//free_lkl(fdf->stack, fdf);
+	//fdf->stack = NULL;
 	init_trans_view(fdf);
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WIDTH, HEIGHT, "rendu FdF!"); 
 	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, WIDTH, HEIGHT);
+	
 }
 
 int	main(int ac, char **av)
@@ -82,10 +83,13 @@ int	main(int ac, char **av)
 		fdf = (t_fdf *)malloc(sizeof(t_fdf));
 		init_graph(fdf, av[1], &set_fd);
 		free(fdf->stack);
-		draw_the_thing(fdf);
+		draw_the_thing(fdf);	
 		mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0 , 0);
-		mlx_key_hook(fdf->win_ptr, key_press, fdf);
+		//mlx_hook(fdf->win_ptr, 2, 0L, esc_close, fdf);
+		//mlx_hook(fdf->win_ptr, 17, 0L, close_win, fdf);
 		mlx_loop(fdf->mlx_ptr);
-		
 	}
+	else
+		print_error(2);
+	return(0);
 }

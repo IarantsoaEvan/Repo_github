@@ -15,7 +15,6 @@
 t_point	*point_init(int x, int y, t_fdf *fdf)
 {
 	t_point	*data;
-
 	data = (t_point *)malloc(sizeof(t_point));
 	if(!data)
 		return (NULL);

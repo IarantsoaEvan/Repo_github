@@ -2,12 +2,13 @@ NAME = FdF
 CFLAGS = -Wall -Wextra -Werror
 MK_MLX = mlx_linux
 MAIN = main.c
-CC = gcc
+CC = gcc -g
 
 CFILES = atoi_hex.c \
-	brensenham2.c \
+	bresenham2.c \
 	data_init.c \
 	draw_map.c \
+	read_map.c \
 	error.c \
 	fdf_utils.c \
 	fdf_utils_map.c \

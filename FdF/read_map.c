@@ -40,40 +40,6 @@ static int	ft_count_w(char *s, char c)
 	return (tokens);
 }
 
-int	get_width(char *file)
-{
-	int	width;
-	int	fd;
-	char	*line;
-
-	fd = open(file, O_RDONLY);
-	line = get_next_line(fd);
-	width = ft_count_w(line, ' ');
-	free(line);
-	close(fd);
-	return (width);
-}
-
-int	get_height(char *file)
-{
-	int	fd;
-	int	height;
-	char	*line;
-
-	height = 0;
-	fd = open(file, O_RDONLY);
-	while (1)
-	{
-		
-		line = get_next_line(fd);
-		if (!line)
-			break;
-		height++;
-		free(line);
-	}
-	close(fd);
-	return (height);
-}
 
 /*void	fill_matrix(int *z_line, char *line)
 {
@@ -119,14 +85,49 @@ void	read_file(char *file, t_fdf *data)
 }
 */
 
+int	get_width(char *file)
+{
+	int	width;
+	int	fd;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	width = ft_count_w(line, ' ');
+	free(line);
+	close(fd);
+	return (width);
+}
+
+int	get_height(char *file)
+{
+	int	fd;
+	int	height;
+	char	*line;
+
+	height = 0;
+	fd = open(file, O_RDONLY);
+	while (1)
+	{
+		
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		height++;
+		free(line);
+	}
+	close(fd);
+	return (height);
+}
+
 int	parsing_info(char *line, t_lkl **stack, int *width, int *set_fd)
 {
 	int	j;
 	char **split;
 	char **z_split;
 
-	j = 0;
 	split = ft_split(line, ' ');
+	j = 0;
 	while(split[j] != NULL)
 	{
 		z_split = ft_split(split[j], ',');
@@ -135,36 +136,40 @@ int	parsing_info(char *line, t_lkl **stack, int *width, int *set_fd)
 			free_split(z_split);
 			free_split(split);
 			*set_fd = -1;
-			return (1)
+			return (1);
 		}
 		free_split(z_split);
-		i++;
+		j++;
 		
 	}
-	if (parsing_error(*witdh, j, set_fd, split))
+	if (parsing_error(*width, j, set_fd, split))
 		return (1);
 	return (0);
 }
-t_lkl *read_file(int fd, int *width, int *height, int *set_fd)
+
+t_lkl	*read_file(int fd, int *width, int *height, int *set_fd)
 {
 	char	*line;
 	t_lkl	*stack;
+	int	i;
 	int	set;
 
+	i = 0;
 	line = get_next_line(fd);
 	if (!line)
 		print_error(1);
 	stack = NULL;
-	*height = get_height(line);
-	*width = get_width(line);
+	*width = ft_count_w(line, ' ');
 	while(line != NULL)
 	{
+		i++;
 		set = parsing_info(line, &stack, width, set_fd);
 		if (set != 0)
 			return (NULL);
 		free(line);
 		line = get_next_line(fd);
 	}
+	*height = i;
 	free(line);
 	close(fd);
 	return(stack);

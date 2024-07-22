@@ -14,7 +14,7 @@
 
 void	free_split(char **split)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while(split[i] != NULL)

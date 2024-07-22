@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
+/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:52:30 by irabesan          #+#    #+#             */
-/*   Updated: 2024/07/12 13:52:32 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:33:10 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 t_point	*project(t_point *p, t_fdf *fdf)
 {
+	
 	p->x *= fdf->zoomer;
 	p->y *= fdf->zoomer;
 	x_rotation(&p->x, &p->y, &p->z, fdf->alpha);
@@ -28,6 +29,12 @@ t_point	*project(t_point *p, t_fdf *fdf)
 
 void	ft_x_px(t_fdf *fdf, int x, int y)
 {
+	t_point	*a;
+	t_point	*b;
+
+	a = project(point_init(x, y, fdf), fdf);
+	b = project(point_init(x + 1, y, fdf), fdf);
+	
 	if (fdf->matrix[y][x].z.color == -1)
 	{
 		if (fdf->matrix[y][x].z.relief != 0)
@@ -37,13 +44,17 @@ void	ft_x_px(t_fdf *fdf, int x, int y)
 	}
 	else
 		fdf->color = fdf->matrix[y][x].z.color;
-	bresenham_2(fdf,project(point_init(x, y, fdf), fdf) \
-			, project(point_init(x + 1, y, fdf), fdf));
+	bresenham_2(fdf, a, b);
 	
 }
 
 void	ft_y_px(t_fdf *fdf, int x, int y)
 {
+	t_point	*a;
+	t_point	*b;
+	
+	a = project(point_init(x, y, fdf), fdf);
+	b = project(point_init(x, y + 1, fdf), fdf);
 	if (fdf->matrix[y][x].z.color == -1)
 	{
 		if (fdf->matrix[y][x].z.relief != 0)
@@ -53,8 +64,7 @@ void	ft_y_px(t_fdf *fdf, int x, int y)
 	}
 	else
 		fdf->color = fdf->matrix[y][x].z.color;
-	bresenham_2(fdf,project(point_init(x, y, fdf), fdf) \
-			, project(point_init(x , y + 1, fdf), fdf));
+	bresenham_2(fdf, a, b);
 	
 }
 
@@ -70,7 +80,7 @@ void draw_the_thing(t_fdf *fdf)
 		while (x < fdf->width)
 		{
 			if (x < fdf->width - 1)
-				ft_x_px(fdf, x, y);
+		 		ft_x_px(fdf, x, y);
 			if (y < fdf->height - 1)
 				ft_y_px(fdf, x, y);
 			x++;	

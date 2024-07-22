@@ -34,9 +34,9 @@ t_matrix	**ft_matrix(t_fdf *fdf, t_lkl *stack)
 	h = fdf->height;
 	w = fdf->width;
 	matrix = (t_matrix **)malloc(sizeof(t_matrix *) * (h + 1));
-	if (matrix)
+	if (!matrix)
 		return (NULL);
-	while (h--)
+	while (h-- > 0)
 	{
 		matrix[h] = (t_matrix *)malloc(sizeof(t_matrix) * (w));
 		if (!matrix[h])

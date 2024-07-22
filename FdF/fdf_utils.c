@@ -12,18 +12,6 @@
 
 #include "fdf.h"
 
-void	my_mlx_pxp(t_fdf *fdf, int x, int y)
-{
-	char	*img_ptr;
-
-	if((x >= 0 && x < fdf->width) && (y >= 0 && y < fdf->height))
-	{
-		fdf->img_data = mlx_get_data_addr(fdf->img_ptr \
-				,&fdf->bpp, &fdf->size_line, &fdf->endian);
-		img_ptr = fdf->img_data + (y * fdf->size_line + x * (fdf->bpp / 8));
-		*(unsigned int *)img_ptr = fdf->color;
-	}
-}
 /*
 float	ft_abs(float i)
 {
@@ -49,6 +37,18 @@ void	ft_gapper(float *x1, float *x2, float *y1, float *y2, t_fdf *data)
 	*y2 += data->gap_y;
 }
 */
+/*void	my_mlx_pxp(t_fdf *fdf, int x, int y)
+{
+	char	*img_ptr;
+
+	if((x >= 0 && x < WIDTH) && (y >= 0 && y < HEIGHT))
+	{
+		fdf->img_data = mlx_get_data_addr(fdf->img_ptr \
+				,&fdf->bpp, &fdf->size_line, &fdf->endian);
+		img_ptr = fdf->img_data + (y * fdf->size_line + x * (fdf->bpp / 8));
+		*(unsigned int *)img_ptr = fdf->color;
+	}
+}*/
 int key_press(int key, t_fdf *data)
 {
 	ft_printf("%d\n", key);
