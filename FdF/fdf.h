@@ -12,7 +12,7 @@
 
 #ifndef FDF_H
 # define FDF_H
-# include "./mlx_linux/mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
-# define D_ANG 0.523599
+# define D_ANG 0.8
 # define WIDTH 960
 # define HEIGHT 1080
 
@@ -142,5 +142,10 @@ int	parsing_info(char *line, t_lkl **stack, int *width, int *set_fd);
 int	fill_z_stk(char **z_split, t_lkl **stack);
 t_lkl	*read_file(int fd, int *width, int *height, int *set_fd);
 void	add_new_stack(t_lkl **root, t_lkl *n_root);
+int	close_win(t_fdf *data);
+int	key_zoomer(int key, t_fdf *data);
+int	do_rot(int key, t_fdf *data);
+int	expose_relief(int key, t_fdf *data);
+int	do_event(int key, t_fdf *data);
 
 #endif

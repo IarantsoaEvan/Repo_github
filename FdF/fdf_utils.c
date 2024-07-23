@@ -75,3 +75,11 @@ int key_press(int key, t_fdf *data)
 		data->zoomer -= 1;
 	return(0);
 }
+
+int	close_win(t_fdf *data)
+{
+	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	free(data->mlx_ptr);
+	exit(0);
+}

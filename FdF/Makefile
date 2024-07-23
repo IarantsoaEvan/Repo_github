@@ -1,6 +1,6 @@
 NAME = FdF
 CFLAGS = -Wall -Wextra -Werror
-MK_MLX = mlx_linux
+MK_MLX = minilibx-linux
 MAIN = main.c
 CC = gcc -g
 
@@ -31,7 +31,7 @@ $(MK_PRINTF):
 
 $(NAME): $(MK_PRINTF) $(OFILES) $(MAIN)
 	make -C $(MK_MLX)
-	$(CC) $(OFILES) $(MAIN) -Lft_printf -lftprintf -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(OFILES) $(MAIN) -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
 	make clean -C $(MK_MLX)
@@ -40,9 +40,8 @@ clean:
 	cd libft/ && make clean
 	
 fclean: clean
-	rm -f $(NAME)
-	make clean -C $(MK_LMX)
 	cd ft_printf/ && make fclean && cd ..
 	cd libft/ && make fclean && cd ..
+	rm -f $(NAME)
 
 re: fclean all

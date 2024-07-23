@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 13:21:09 by irabesan          #+#    #+#             */
-/*   Updated: 2024/07/22 12:29:43 by irabesan         ###   ########.fr       */
+/*   Created: 2024/07/23 11:20:31 by irabesan          #+#    #+#             */
+/*   Updated: 2024/07/23 11:20:33 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-void	free_lkl(t_lkl *stack, t_fdf *fdf)
+void free_lkl(t_lkl *stack, t_fdf *fdf)
 {
-	t_lkl	*root;
-	t_lkl	*n_root;
+	t_lkl *root;
+	t_lkl *n_root;
 
-	while (stack != NULL)
+	while(root != NULL)
 	{
 		n_root = stack->next;
-		free(stack->z);
+		free(fdf->stack->z)
 		stack = n_root;
 	}
 	while (fdf->stack)
 	{
 		root = fdf->stack->next;
-		free(fdf->stack);
+		free(fdf->stack)
 		fdf->stack = root;
 	}
 }
@@ -42,39 +40,36 @@ void	init_trans_view(t_fdf *fdf)
 	fdf->x_p = (WIDTH / 2) - (fdf->width / 2);
 	fdf->y_p = (HEIGHT / 2) - (fdf->height / 2);
 	fdf->trans = 1;
-	fdf->angle = D_ANG;
 	fdf->relief = 1;
-	
+	fdf->rot = 0;
+	fdf->angle = D_ANG;
+	fdf->alpha = 0;
+	fdf->beta= 0;
+	fdf->teta = 0;
 }
 
-void	init_graph(t_fdf *fdf, char *file_fdf, int *check_fd)
+void	init_graph(t_fdf *fdf, char *filename, int *set_fd)
 {
-	//t_lkl	*stack;
 	int	fd;
-
-	fd = open(file_fdf, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		print_error(1);
-	ft_filename(file_fdf);
-	fdf->stack = read_file(fd, &fdf->width, &fdf->height, check_fd);
-	if (*check_fd == -1)
+	ft_filename(filename);
+	fdf->stack = read_file(fd, &fdf->width, &fdf->height, set_fd);
+	if (*set_fd == -1)
 		print_error(3);
-	if (*check_fd == -2)
+	else if (*set_fd == -2)
 		print_error(4);
-	//stack = fdf->stack;
 	fdf->matrix = ft_matrix(fdf, fdf->stack);
-	//free_lkl(fdf->stack, fdf);
-	//fdf->stack = NULL;
 	init_trans_view(fdf);
 	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WIDTH, HEIGHT, "rendu FdF!"); 
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WITH, HEIGHT, "FDF BONUS!");
 	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, WIDTH, HEIGHT);
-	
 }
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_fdf *fdf;
+	t_fdf	*fdf;
 	int	set_fd;
 
 	if (ac == 2)
@@ -83,13 +78,12 @@ int	main(int ac, char **av)
 		fdf = (t_fdf *)malloc(sizeof(t_fdf));
 		init_graph(fdf, av[1], &set_fd);
 		free(fdf->stack);
-		draw_the_thing(fdf);	
-		mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0 , 0);
-		//mlx_hook(fdf->win_ptr, 2, 0L, esc_close, fdf);
+		draw_the_thing(fdf);
+		mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
 		mlx_hook(fdf->win_ptr, 17, 0L, close_win, fdf);
-		mlx_loop(fdf->mlx_ptr);
+		mlx_hook(fdf->fdf->win_ptr, 2, 0L, do_event, fdf);
 	}
 	else
 		print_error(2);
-	return(0);
+	return (0);
 }
