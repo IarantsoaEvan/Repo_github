@@ -27,17 +27,16 @@ void	ascii_to_bin(int pid, char *m_str)
 				kill(pid, SIGUSR2);
 			else if (((unsigned char)(m_str[idx] >> (7 - byte)) & 1) == 1)
 				kill(pid, SIGUSR1);
-			usleep(50);
+			usleep(75);
 		}
-	idx++;
+		idx++;
 	}
 	byte = 0;
 	while (byte++ < 8)
 	{
 		kill(pid, SIGUSR2);
-		usleep(50);
+		usleep(75);
 	}
-	
 }
 int	main(int ac, char **av)
 {

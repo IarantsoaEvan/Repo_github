@@ -24,14 +24,13 @@ int	ft_recursive_power(int nb, int power)
 	{
 		result = nb * ft_recursive_power(nb, power - 1);
 		return (result);
-	} 
+	}
 }
-
 
 char	*assemble_message(const char *s1, const char c)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	i = 0;
@@ -48,11 +47,10 @@ char	*assemble_message(const char *s1, const char c)
 	return (str);
 }
 
-void sig_handler(int signum)
+void	sig_handler(int signum)
 {
 	static int	count;
 	static int	result;
-	static int	l;
 	static char	*f_message;
 
 	if (!f_message)
@@ -73,22 +71,22 @@ void sig_handler(int signum)
 		}
 		count = 0;
 		result = 0;
-		l += 1;
 	}
 }
 
 int	main(void)
 {
 	struct sigaction	sa;
+
 	ft_printf("===========START===========\n");
 	ft_printf("Server's PID: %d\n", getpid());
 	sa.sa_handler = sig_handler;
+	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGUSR2, &sa, NULL);
 	sigaction(SIGUSR1, &sa, NULL);
-	while(1)
+	while (1)
 	{
 		usleep(50);
 	}
-	
 }
