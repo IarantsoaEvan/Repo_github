@@ -56,4 +56,5 @@ int	main(int ac, char **av)
 	init_program(&program, philos);
 	init_forks(forks, ft_atoi(av[1]));
 	init_philos(philos, &program, forks, av);
+  return (0);
 }

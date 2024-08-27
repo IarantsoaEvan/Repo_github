@@ -50,4 +50,14 @@ typedef struct s_program
 	t_philo		*philos;
 }	t_program;
 
+void  print_error(int error);
+size_t	ft_get_current_time(void);
+int	ft_strlen(char *str);
+int ft_atoi(char *str);
+void	init_input(t_philo philo, char **av);
+void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
+			char **av);
+void	init_forks(pthread_mutex_t *forks, int	philo_nbr);
+void	init_program(t_program *program, t_philo *philos);
+
 #endif

@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	init_input(t_philo, char **av)
+void	init_input(t_philo philo, char **av)
 {
 	philo->philo_nbr = ft_atoi(av[1]);
 	philo->time_to_die = ft_atoi(av[2]);

@@ -31,7 +31,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_atoi(char *str)
+int ft_atoi(char *str)
 {
 	unsigned long long	nbr;
 	int					sign;
@@ -52,4 +52,9 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (sign *nbr);
+}
+
+void	ft_usleep(size_t msec)
+{
+	
 }
