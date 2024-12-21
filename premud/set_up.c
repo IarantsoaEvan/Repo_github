@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_up.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
+/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:02:15 by irabesan          #+#    #+#             */
-/*   Updated: 2024/08/26 10:02:17 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:35:44 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_input(t_philo philo, char **av)
 	else
 		philo->num_times_to_eat = -3;
 }
-void	init_philos(t_philos *philos, t_program *program, pthread_mutex_t *forks,
+void	init_philos(t_philo *philos, t_schedule *program, pthread_mutex_t *forks,
 			char **av)
 {
 	int	i;
@@ -61,7 +61,7 @@ void	init_forks(pthread_mutex_t *forks, int	philo_nbr)
 		i++;
 	}
 }
-void	init_program(t_program *program, t_philo *philos)
+void	init_schedule(t_schedule *program, t_philo *philos)
 {
 	program->dead_flag = 0;
 	program->philos = philos;

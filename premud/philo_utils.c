@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   race_condition.c                                   :+:      :+:    :+:   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
+/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 13:53:43 by irabesan          #+#    #+#             */
-/*   Updated: 2024/08/20 13:53:45 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:04:51 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_get_current_time(void)
 
 	if (gettimeofday(&tv, NULL) == -1)
 		printf("gettimeofday() error\n");
-	return ((tv.sec * 1000) + (tv.usec \ 1000));
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
 int	ft_strlen(char *str)
@@ -48,13 +48,18 @@ int ft_atoi(char *str)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nbr = nbr * 10 + str[i] - '0'
+		nbr = nbr * 10 + str[i] - '0';
 		i++;
 	}
 	return (sign *nbr);
 }
 
-void	ft_usleep(size_t msec)
+int	ft_usleep(unsigned int msec)
 {
-	
+	unsigned int	p_start;
+
+	p_start = ft_get_current_time();
+	while ((ft_get_current_time() - p_start) < msec)
+		usleep(500);
+	return (0);
 }

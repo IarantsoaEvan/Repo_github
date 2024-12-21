@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
+/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 13:06:01 by irabesan          #+#    #+#             */
-/*   Updated: 2024/08/21 13:07:03 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:30:15 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-int	check_av(char *av)
+int	check_av(char *av) //check argv is only nbrs
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int	check_av(char *av)
 	return (0);
 }
 
-int	check_input(char **av)
+int	check_input(char **av) //check if the philo input is correct
 {
 	if (ft_atoi(av[1]) > PHILO_MAX || ft_atoi(av[1]) <= 0
 		|| check_av(av[1]) == 1)
@@ -45,7 +45,7 @@ int	check_input(char **av)
 
 int	main(int ac, char **av)
 {
-	t_program	program;
+	t_schedule	program;
 	t_philo	philos[PHILO_MAX];
 	pthread_mutex_t	forks[PHILO_MAX];
 
@@ -53,7 +53,7 @@ int	main(int ac, char **av)
 		return (print_error(6), 1);
 	if (check_input(av) == 1)
 		return (1);
-	init_program(&program, philos);
+	init_schedule(&program, philos);
 	init_forks(forks, ft_atoi(av[1]));
 	init_philos(philos, &program, forks, av);
   return (0);

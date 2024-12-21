@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
+/*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:42:10 by irabesan          #+#    #+#             */
-/*   Updated: 2024/08/20 15:42:12 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:30:17 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,23 @@ typedef struct s_philo
 	
 }	t_philo;
 
-typedef struct s_program
+typedef struct s_schedule
 {
 	int	dead_flag;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write_lock;
 	t_philo		*philos;
-}	t_program;
+}	t_schedule;
 
 void  print_error(int error);
 size_t	ft_get_current_time(void);
 int	ft_strlen(char *str);
 int ft_atoi(char *str);
 void	init_input(t_philo philo, char **av);
-void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
+void	init_philos(t_philo *philos, t_schedule *program, pthread_mutex_t *forks,
 			char **av);
 void	init_forks(pthread_mutex_t *forks, int	philo_nbr);
-void	init_program(t_program *program, t_philo *philos);
+void	init_schedule(t_schedule *program, t_philo *philos);
 
 #endif
