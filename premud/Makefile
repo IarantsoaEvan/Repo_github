@@ -2,7 +2,7 @@ NAME = philo
 CC = gcc
 LIBFT_N = libft.a
 CFLAGS  = -Wall -Wextra -Werror
-CFILES =	error.c	moni.c philo_utils.c routine.c set_up.c main.c
+CFILES =	error.c	moni.c philo_utils.c set_up.c main.c
 LIBFT_D = ./libft
 OFILES = $(SRC:.c=.o)
 
@@ -16,7 +16,7 @@ $(NAME): $(CFILES)
 
 clean:
 		@ make clean -C $(LIBFT_D)
-		@ rm -f (OFILES)
+		@ rm -f $(OFILES)
 		@ echo "Make clean <OK!>"
 
 fclean: clean

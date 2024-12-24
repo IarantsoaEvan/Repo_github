@@ -6,13 +6,13 @@
 /*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:02:15 by irabesan          #+#    #+#             */
-/*   Updated: 2024/12/21 14:35:44 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:46:19 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_input(t_philo philo, char **av)
+void	init_input(t_philo *philo, char **av)
 {
 	philo->philo_nbr = ft_atoi(av[1]);
 	philo->time_to_die = ft_atoi(av[2]);
@@ -68,4 +68,22 @@ void	init_schedule(t_schedule *program, t_philo *philos)
 	pthread_mutex_init(&program->write_lock, NULL);
 	pthread_mutex_init(&program->dead_lock, NULL);
 	pthread_mutex_init(&program->meal_lock, NULL);
+}
+
+void	ft_annihilizer(t_schedule *pgr, t_philo *pfk, char *m_error)
+{
+	int	k;
+
+	k = -1;
+	if (m_error)
+	{
+		write(STDERR_FILENO, m_error, ft_strlen(m_error));
+		write(STDERR_FILENO, "\n", 1);
+	}
+	while (++k < pgr->philos[0].philo_nbr)
+		pthread_mutex_destroy(&pfk[k]);
+	pthread_mutex_destroy(&pgr->write_lock);
+	pthread_mutex_destroy(&pgr->dead_lock);
+	pthread_mutex_destroy(&pgr->meal_lock);
+	return ;
 }

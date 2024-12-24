@@ -6,14 +6,14 @@
 /*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 13:06:01 by irabesan          #+#    #+#             */
-/*   Updated: 2024/12/21 14:30:15 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/23 10:49:18 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-int	check_av(char *av) //check argv is only nbrs
+int	check_av(char *av)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int	check_av(char *av) //check argv is only nbrs
 	return (0);
 }
 
-int	check_input(char **av) //check if the philo input is correct
+int	check_input(char **av)
 {
 	if (ft_atoi(av[1]) > PHILO_MAX || ft_atoi(av[1]) <= 0
 		|| check_av(av[1]) == 1)
@@ -48,7 +48,6 @@ int	main(int ac, char **av)
 	t_schedule	program;
 	t_philo	philos[PHILO_MAX];
 	pthread_mutex_t	forks[PHILO_MAX];
-
 	if (ac != 5 && ac != 6)
 		return (print_error(6), 1);
 	if (check_input(av) == 1)
@@ -56,5 +55,6 @@ int	main(int ac, char **av)
 	init_schedule(&program, philos);
 	init_forks(forks, ft_atoi(av[1]));
 	init_philos(philos, &program, forks, av);
+	printf("ok\n");
   return (0);
 }
