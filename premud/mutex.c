@@ -6,7 +6,7 @@
 /*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:28:42 by irabesan          #+#    #+#             */
-/*   Updated: 2024/12/24 12:44:46 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:39:56 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,25 @@ void	*ft_daily_routine(void *ff)
 int	ft_create_th_mtx(t_schedule *pgr, pthread_mutex_t *fks)
 {
 	pthread_t	the_monitor;
+	int	k;
 
-	if (pthread_create(&the_monitor, NULL, ft_daily_routine, philo) != 0)
-
-
+	if (pthread_create(&the_monitor, NULL, &the_moni, pgr->philos) != 0)
+		ft_annihilizer(pgr, fks, "none creation of thread");
+	k = 0;
+	while (k < pgr->philos[0].philo_nbr)
+	{
+		if (pthread_create(&pgr->philos[k].thread, NULL, &ft_daily_routine, &pgr->philos[k]) != 0)
+			ft_annihilizer(pgr, fks, "none creation of thread");
+		k++;
+	}
+	k = 0;
+	if (pthread_join(the_monitor, NULL) != 0)
+		ft_annihilizer(pgr, fks, "pthr_join error");
+	while (k < pgr->philos[0].philo_nbr)
+	{
+		if (pthread_join(pgr->philos[k].thread, NULL) != 0)
+			ft_annihilizer(pgr, fks, "pthr_join error");
+		k++;
+	}
+	return (0);
 }

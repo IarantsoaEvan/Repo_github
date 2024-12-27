@@ -6,7 +6,7 @@
 /*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 13:53:43 by irabesan          #+#    #+#             */
-/*   Updated: 2024/12/21 15:04:51 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:49:52 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_get_current_time(void)
 
 	if (gettimeofday(&tv, NULL) == -1)
 		printf("gettimeofday() error\n");
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 int	ft_strlen(char *str)
@@ -54,9 +54,9 @@ int ft_atoi(char *str)
 	return (sign *nbr);
 }
 
-int	ft_usleep(unsigned int msec)
+int	ft_usleep(size_t msec)
 {
-	unsigned int	p_start;
+	size_t	p_start;
 
 	p_start = ft_get_current_time();
 	while ((ft_get_current_time() - p_start) < msec)

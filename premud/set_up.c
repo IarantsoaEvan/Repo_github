@@ -6,7 +6,7 @@
 /*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:02:15 by irabesan          #+#    #+#             */
-/*   Updated: 2024/12/24 13:46:19 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:22:52 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,24 @@ void	init_schedule(t_schedule *program, t_philo *philos)
 	pthread_mutex_init(&program->meal_lock, NULL);
 }
 
-void	ft_annihilizer(t_schedule *pgr, t_philo *pfk, char *m_error)
+void	ft_annihilizer(t_schedule *pgr, pthread_mutex_t *pfk, char *m_error)
 {
 	int	k;
 
-	k = -1;
+	k = 0;
 	if (m_error)
 	{
-		write(STDERR_FILENO, m_error, ft_strlen(m_error));
-		write(STDERR_FILENO, "\n", 1);
+		printf("ok");
+		// write(STDERR_FILENO, m_error, ft_strlen(m_error));
+		// write(STDERR_FILENO, "\n", 1);
 	}
-	while (++k < pgr->philos[0].philo_nbr)
-		pthread_mutex_destroy(&pfk[k]);
 	pthread_mutex_destroy(&pgr->write_lock);
 	pthread_mutex_destroy(&pgr->dead_lock);
 	pthread_mutex_destroy(&pgr->meal_lock);
+	while (k < pgr->philos[0].philo_nbr)
+	{	
+		pthread_mutex_destroy(&pfk[k]);
+		k++;
+	}
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:01:41 by irabesan          #+#    #+#             */
-/*   Updated: 2024/12/23 11:42:21 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/27 11:44:40 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_think(t_philo *philo)
 	print_action("is thinking", philo, philo->id);
 }
 
-void	ft_think(t_philo *philo)
+void	ft_sleep(t_philo *philo)
 {
 	print_action("is sleeping", philo, philo->id);
 	ft_usleep(philo->time_to_sleep);
@@ -39,11 +39,10 @@ void	ft_eat(t_philo *philo)
 	print_action("is eating", philo, philo->id);
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_meal = ft_get_current_time();
-	philo->meals_eaten += 1;
+	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
 	ft_usleep(philo->time_to_eat);
 	philo->eating = 0;
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
-
 }

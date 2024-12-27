@@ -6,7 +6,7 @@
 /*   By: irabesan <irabesan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 13:06:01 by irabesan          #+#    #+#             */
-/*   Updated: 2024/12/23 10:49:18 by irabesan         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:17:50 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int ac, char **av)
 	init_schedule(&program, philos);
 	init_forks(forks, ft_atoi(av[1]));
 	init_philos(philos, &program, forks, av);
-	printf("ok\n");
-  return (0);
+	ft_create_th_mtx(&program, forks);
+	ft_annihilizer(&program, forks, NULL);
+	return (0);
 }
