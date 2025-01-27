@@ -14,7 +14,6 @@
 
 void	print_error(int error)
 {
-
 	if (error == 1)
 		ft_printf("file error!\n");
 	else if (error == 2)
@@ -33,10 +32,21 @@ int	ft_filename(char *filename)
 	i = 0;
 	while (filename[i])
 		i++;
-	if (filename[i - 1] != 'f')
+	if (filename[i - 1] != 'f' || filename[i - 2] != 'd'
+		|| filename[i - 3] != 'f')
 	{
 		print_error(1);
 		exit(1);
 	}
 	return (0);
+}
+
+void	free_matrix(t_fdf *fdf)
+{
+	int	h;
+
+	h = fdf->height;
+	while (h--)
+		free(fdf->matrix[h]);
+	free(fdf->matrix);
 }

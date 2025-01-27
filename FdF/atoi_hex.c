@@ -27,7 +27,6 @@ int	ft_is_hexadecimal(char c)
 	else if (c == 'F' || c == 'f')
 		return (15);
 	return (c - 48);
-		
 }
 
 int	ft_atoi_hex(char *s)

@@ -14,27 +14,39 @@
 
 void	per_iso(int *x, int *y, int z, double teta)
 {
-	*x = (*x - *y) * cos(teta);
-	*y = (*x + *y) * sin(teta) - z;
+	int	tmp;
+
+	tmp = *x;
+	*x = (tmp - *y) * cos(teta);
+	*y = (tmp + *y) * sin(teta) - z;
 }
 
-void x_rotation(int *x, int *y, int *z, double teta)
+void	x_rotation(int *x, int *y, int *z, double teta)
 {
+	int	tmp;
+
 	(void)(x);
-	*y = *y * cos(teta) + *z * sin(teta);
-	*z = -(*y) * sin(teta) + *z * (cos(teta));
+	tmp = *y;
+	*y = tmp * cos(teta) + *z * sin(teta);
+	*z = -(tmp) * sin(teta) + *z * (cos(teta));
 }
 
-void y_rotation(int *x, int *y, int *z, double teta)
+void	y_rotation(int *x, int *y, int *z, double teta)
 {
+	int	tmp;
+
 	(void)(y);
-	*x = *x * cos(teta) + *z * sin(teta);
-	*z = -(*x) * sin(teta) + *z * (cos(teta));
+	tmp = *x;
+	*x = tmp * cos(teta) + *z * sin(teta);
+	*z = -(tmp) * sin(teta) + *z * (cos(teta));
 }
 
-void z_rotation(int *x, int *y, int *z, double teta)
+void	z_rotation(int *x, int *y, int *z, double teta)
 {
+	int	tmp;
+
 	(void)(z);
-	*x = *x * cos(teta) - *y * sin(teta);
-	*y = -(*x) * sin(teta) + *y * (cos(teta));
+	tmp = *x;
+	*x = tmp * cos(teta) - *y * sin(teta);
+	*y = -(tmp) * sin(teta) + *y * (cos(teta));
 }

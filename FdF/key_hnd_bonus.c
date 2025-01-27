@@ -12,33 +12,37 @@
 
 #include "fdf.h"
 
-/*int	close_win(t_fdf *data)
+int	close_win(t_fdf *data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	exit(0);
-}*/
+}
 
 int	key_zoomer(int key, t_fdf *data)
 {
 	if (key == 61)
 	{
-		data->zoomer += 3;
+		data->zoomer += 1;
 		data->x_p -= 10;
 		data->y_p -= 10;
 	}
 	else if (key == 45)
 	{
-		data->zoomer -= 3;
+		data->zoomer -= 1;
 		data->x_p += 10;
 		data->y_p += 10;
 	}
 	else if (key == 65307)
 	{
+		free_matrix(data);
 		mlx_destroy_image(data->mlx_ptr, data->img_ptr);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
+		free(data);
 		exit(0);
 	}
 	return (0);
@@ -75,13 +79,13 @@ int	do_rot(int key, t_fdf *data)
 int	expose_relief(int key, t_fdf *data)
 {
 	if (key == 65451)
-		data->relief += 2;
+		data->relief += 1;
 	else if (key == 65453)
-		data->relief -= 2;
+		data->relief -= 1;
 	else if (key == 65433)
-		data->trans = 1;
-	else if (key == 65435)
 		data->trans = 0;
+	else if (key == 65435)
+		data->trans = 1;
 	return (0);
 }
 
@@ -92,9 +96,9 @@ int	do_event(int key, t_fdf *data)
 	expose_relief(key, data);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
-	param->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	data->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	draw_the_thing(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win->ptr); \
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
 			data->img_ptr, 0, 0);
-		return (0);
+	return (0);
 }

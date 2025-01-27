@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_init.c                                        :+:      :+:    :+:   */
+/*   ft_colors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irabesan <irabesan@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 14:17:16 by irabesan          #+#    #+#             */
-/*   Updated: 2024/07/15 14:17:17 by irabesan         ###   ########.fr       */
+/*   Created: 2024/07/24 15:42:51 by irabesan          #+#    #+#             */
+/*   Updated: 2024/07/24 15:42:52 by irabesan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_point	*point_init(int x, int y, t_fdf *fdf)
+int	create_trgb(int r, int g, int b)
 {
-	t_point	*data;
+	return (r << 16 | g << 8 | b);
+}
 
-	data = (t_point *)malloc(sizeof(t_point));
-	if (!data)
-		return (NULL);
-	data->x = x - fdf->off_x;
-	data->y = y - fdf->off_y;
-	data->z = fdf->matrix[y][x].z.relief * fdf->relief;
-	data->color = fdf->matrix[y][x].z.color;
-	return (data);
+int	get_r(int trgb)
+{
+	return ((trgb >> 16) & 0xFF);
+}
+
+int	get_g(int trgb)
+{
+	return ((trgb >> 8) & 0xFF);
+}
+
+int	get_b(int trgb)
+{
+	return (trgb & 0xFF);
 }

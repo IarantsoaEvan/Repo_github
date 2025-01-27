@@ -73,7 +73,8 @@ char	*ft_strjoin_1(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	result = (char *)malloc(sizeof(char) * (ft_strlen_1(s1) + ft_strlen_1(s2) + 1));
+	result = (char *)malloc(sizeof(char) * (ft_strlen_1(s1) \
+	+ ft_strlen_1(s2) + 1));
 	if (!result)
 		return (free(s1), NULL);
 	while (s1[j])

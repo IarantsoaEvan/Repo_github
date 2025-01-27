@@ -28,12 +28,12 @@ void	fill_data(t_matrix *matrix, t_lkl **stack, t_fdf *fdf)
 t_matrix	**ft_matrix(t_fdf *fdf, t_lkl *stack)
 {
 	t_matrix	**matrix;
-	int		h;
-	int		w;
+	int			h;
+	int			w;
 
 	h = fdf->height;
 	w = fdf->width;
-	matrix = (t_matrix **)malloc(sizeof(t_matrix *) * (h + 1));
+	matrix = (t_matrix **)malloc(sizeof(t_matrix *) * (h));
 	if (!matrix)
 		return (NULL);
 	while (h-- > 0)
@@ -43,6 +43,5 @@ t_matrix	**ft_matrix(t_fdf *fdf, t_lkl *stack)
 			return (NULL);
 		fill_data(matrix[h], &stack, fdf);
 	}
-	matrix[h] = NULL;
 	return (matrix);
 }
